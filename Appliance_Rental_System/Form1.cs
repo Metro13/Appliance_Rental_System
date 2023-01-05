@@ -6,7 +6,6 @@ namespace Appliance_Rental_System
         {
             InitializeComponent();
         }
-
         private void CmdProceed_Click(object sender, EventArgs e)
         {
             login login = new login();

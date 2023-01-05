@@ -12,7 +12,7 @@ namespace Appliance_Rental_System
     {
         private int numrows;
 
-        public string loadConnectionString(string id = "Default")
+        public static string ConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
@@ -20,9 +20,9 @@ namespace Appliance_Rental_System
         public int QueryExecuter(string query, Dictionary<string, object> args)
         {
             // database connection using Connection string from AppConfig
-            using var connection = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
+            using var connection = new SQLiteConnection(ConnectionString());
             connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            using (SQLiteCommand command = new(query, connection))
             {
                 foreach (var pair in args)
                 {

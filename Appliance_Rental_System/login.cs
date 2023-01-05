@@ -12,7 +12,7 @@ namespace Appliance_Rental_System
 {
     public partial class login : Form
     {
-        IAuthentication authentication = new User();
+        int MaxloginAttempts = 3;
 
         public login()
         {
@@ -21,16 +21,23 @@ namespace Appliance_Rental_System
 
         private void CmdSignin_Click(object sender, EventArgs e)
         {
-            authentication.Username = TxtUsername.Text; 
-            authentication.Password = TxtPassword.Text;
-
-            if (string.IsNullOrEmpty(authentication.Username) && string.IsNullOrEmpty(authentication.Password))
+            
+            IAuthentication authentication = new User
             {
-                MessageBox.Show("Please Enter all the details to proceed");
+                Username = TxtUsername.Text,
+                Password = TxtPassword.Text,
+            };
+
+            if (string.IsNullOrEmpty(authentication.Username))
+            {
+                MessageBox.Show("Please username field can't be empty");
             }
+            else if(string.IsNullOrEmpty(authentication.Password))
+            {
+                MessageBox.Show("Please password field can't be empty");
+            } 
             else
             {
-
                 if (authentication.PasswordCaseValidator(authentication.Password))
                 {
                     if (authentication.PasswordLengthValidator(authentication.Password))
@@ -43,11 +50,18 @@ namespace Appliance_Rental_System
 
                        int NumberOfRows = authentication.SignInUser(authData);
 
-                        if (NumberOfRows == 0)
+                        if (NumberOfRows == 0 && MaxloginAttempts != 0)
                         {
                             MessageBox.Show("Username & Password Incorrect");
+                            MaxloginAttempts--;
+
+                            if(MaxloginAttempts == 0)
+                            {
+                                MessageBox.Show("Maximum password attempts reached. Try loggin in later");
+                                MaxloginAttempts = 0;   
+                            }
                         }
-                        else if (NumberOfRows > 1)
+                        else if (NumberOfRows == 1 && MaxloginAttempts != 0)
                         {
                             MessageBox.Show("Authentication Successfull!"); 
                         }
