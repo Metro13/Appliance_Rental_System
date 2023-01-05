@@ -12,19 +12,57 @@ namespace Appliance_Rental_System
 {
     public partial class login : Form
     {
+        IAuthentication authentication = new User();
+
         public login()
         {
             InitializeComponent();
         }
 
-        private void login_Load(object sender, EventArgs e)
-        {
-           
-        }
-
         private void CmdSignin_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Signed in");
+            authentication.Username = TxtUsername.Text; 
+            authentication.Password = TxtPassword.Text;
+
+            if (string.IsNullOrEmpty(authentication.Username) && string.IsNullOrEmpty(authentication.Password))
+            {
+                MessageBox.Show("Please Enter all the details to proceed");
+            }
+            else
+            {
+
+                if (authentication.PasswordCaseValidator(authentication.Password))
+                {
+                    if (authentication.PasswordLengthValidator(authentication.Password))
+                    {
+                        var authData = new Dictionary<string, object>
+                        {
+                            {"Username", authentication.Username},
+                            {"Password", authentication.Password},
+                        };
+
+                       int NumberOfRows = authentication.SignInUser(authData);
+
+                        if (NumberOfRows == 0)
+                        {
+                            MessageBox.Show("Username & Password Incorrect");
+                        }
+                        else if (NumberOfRows > 1)
+                        {
+                            MessageBox.Show("Authentication Successfull!"); 
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("cannot proceed Your password is less than 8 characters");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please use atlease one uppercase and lowercase in your password");
+                }
+                
+            }
         }
     }
 }

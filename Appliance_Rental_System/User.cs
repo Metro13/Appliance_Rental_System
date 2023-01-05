@@ -2,20 +2,44 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Appliance_Rental_System
 {
-    internal class User:IAuthentication
+    public class User : IAuthentication
     {
-        public string Firstname { get => Firstname; set { Firstname = value; } }
-        public string Lastname { get => Lastname;  set { Lastname = value; } }
-        public string Username { get => Username; set { Lastname = value; } }
-        public string Password { get => Password; set { Password = value; } }
+        private string firstname;
+        private string lastname;
+        private string password;
+        private string username;
 
-        DBConnection conn = new DBConnection();
+        public string Firstname 
+        {
+            set{ firstname = value;}
+            get{ return firstname;}
+        }
+        public string Lastname 
+        { 
+            set { lastname = value; }
+            get { return lastname; }
+        }
+        public string Username
+        { set { username = value; } 
+            get{ return username; }
+        }
+        public string Password 
+        { 
+            set { password = value; }
+            get
+            {
+                return password;
+            }   
+        }
+
         public int SignInUser(Dictionary<string, object> authdata)
         {
             using var conn = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
@@ -26,11 +50,6 @@ namespace Appliance_Rental_System
                 command.Parameters.Add(new SQLiteParameter("@username", authdata["Username"]));
                 command.Parameters.Add(new SQLiteParameter("@password", authdata["Password"]));
             }
-            else
-            {
-                //if 2 is returned it means the auth data is null
-                return 2;
-            }
 
             using var reader = command.ExecuteReader();
             var count = 0;
@@ -40,6 +59,29 @@ namespace Appliance_Rental_System
             }
             return count;
 
+        }
+
+        public bool PasswordCaseValidator(string password)
+        {
+            if(Regex.IsMatch(password, "^(?=.*[a-z])(?=.*[A-Z]).+$"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool PasswordLengthValidator(string password)
+        {
+            if (password.Length < 8)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
     }

@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Appliance_Rental_System
 {
-    internal interface IAuthentication
+    public interface IAuthentication
     {
-        string Firstname { get => Firstname; set { Firstname = value; } }
-        string Lastname { get => Lastname; set { Lastname = value; } }
-        string Username { get => Username; set { Lastname = value; } }
-        string Password { get => Password; set { Password = value; } }
+        string Firstname { get; set; }
+        string Lastname { get; set ;  }
+        string Username { get; set ; }
+        string Password { get; set; } 
+
+        int SignInUser(Dictionary<string, object> authdata);
+        bool PasswordCaseValidator(string password);
+        bool PasswordLengthValidator(string password);
     }
 }
