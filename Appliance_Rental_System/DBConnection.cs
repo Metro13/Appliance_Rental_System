@@ -19,22 +19,19 @@ namespace Appliance_Rental_System
 
         public int QueryExecuter(string query, Dictionary<string, object> args)
         {
-
             // database connection using Connection string from AppConfig
-            using (var connection = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+            using var connection = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                connection.Open();
-                using (var command = new SQLiteCommand(query, connection))
+                foreach (var pair in args)
                 {
-                    foreach (var pair in args)
-                    {
-                        command.Parameters.AddWithValue(pair.Key, pair.Value);
-                    }
-                    // execute the Query & Returning Number of Rows
-                    numrows = command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue(pair.Key, pair.Value);
                 }
-                return numrows;
+                // execute the Query & Returning Number of Rows
+                numrows = command.ExecuteNonQuery();
             }
+            return numrows;
         }
     }
 }

@@ -16,5 +16,15 @@ namespace Appliance_Rental_System
         {
             InitializeComponent();
         }
+
+        private void login_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void CmdSignin_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Signed in");
+        }
     }
 }
