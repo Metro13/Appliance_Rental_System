@@ -23,6 +23,7 @@ namespace Appliance_Rental_System
         //User authentication
         private void CmdSignin_Click(object sender, EventArgs e)
         {
+            //setting up User class and interface attributes to the actual data input fiedls
 
             IAuthentication authentication = new User
             {
@@ -30,6 +31,7 @@ namespace Appliance_Rental_System
                 Password = TxtPassword.Text,
             };
 
+            //validating empty fields to avoid null types
             if (string.IsNullOrEmpty(authentication.Username))
             {
                 MessageBox.Show("Please username field can't be empty");
@@ -40,6 +42,7 @@ namespace Appliance_Rental_System
             }
             else
             {
+                //pairing the attributes to a portable dictionary for easy management 
 
                 var authData = new Dictionary<string, object>
                    {
@@ -48,6 +51,8 @@ namespace Appliance_Rental_System
                    };
 
                 int NumberOfRows = authentication.SignInUser(authData);
+
+                //checking the number of rows affected when the query runs and also checking login attempts
 
                 if (NumberOfRows == 0 && MaxloginAttempts != 0)
                 {

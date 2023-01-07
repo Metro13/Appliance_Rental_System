@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Appliance_Rental_System
 {
+    // a authentication interface to abstract the user methods implementation
     public interface IAuthentication
     {
         string Firstname { get; set; }

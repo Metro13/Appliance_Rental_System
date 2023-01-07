@@ -12,11 +12,13 @@ namespace Appliance_Rental_System
     {
         private int numrows;
 
+        //setting up a portable mysqlite connection string
         public static string ConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
 
+        //setting up a portable query executor
         public int QueryExecuter(string query, Dictionary<string, object> args)
         {
             // database connection using Connection string from AppConfig
