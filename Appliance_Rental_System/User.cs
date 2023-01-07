@@ -16,6 +16,7 @@ namespace Appliance_Rental_System
         private string lastname;
         private string password;
         private string username;
+        private string contact;
 
         public string Firstname 
         {
@@ -40,6 +41,12 @@ namespace Appliance_Rental_System
             }   
         }
 
+        public string Contact
+        {
+            set { contact = value; }
+            get { return contact; }
+        }
+
         public int SignInUser(Dictionary<string, object> authdata)
         {
             using var conn = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString);
@@ -61,8 +68,33 @@ namespace Appliance_Rental_System
 
         }
 
+        public int SignUpUser(Dictionary<string, object> userdata)
+        {
+            //setting up database connection
+
+            DBConnection connection = new();
+
+            const string query = "INSERT INTO Users(firstname, lastname,  username, contact, password) VALUES (@firstname, @lastname, @contact, @username, @password)";
+
+            var args = new Dictionary<string, object>
+            {
+                {"@firstname", userdata["Firstname"]},
+                {"@lastname", userdata["Lastname"]},
+                {"@username", userdata["Username"]},
+                {"@password", userdata["Password"]},
+                {"@contact", userdata["Contact"]},
+            };
+
+            //running a query executor helper function 
+
+            return connection.QueryExecuter(query, args);
+        }
+
+        //checks the input password and check if it contains uppercase lowercase values
         public bool PasswordCaseValidator(string password)
         {
+            //regex expression
+
             if(Regex.IsMatch(password, "^(?=.*[a-z])(?=.*[A-Z]).+$"))
             {
                 return true;
@@ -72,6 +104,8 @@ namespace Appliance_Rental_System
                 return false;
             }
         }
+
+        //checks the input password and checks if its 8 digits long
         public bool PasswordLengthValidator(string password)
         {
             if (password.Length < 8)

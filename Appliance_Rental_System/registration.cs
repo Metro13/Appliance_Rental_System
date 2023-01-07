@@ -16,5 +16,90 @@ namespace Appliance_Rental_System
         {
             InitializeComponent();
         }
+
+        private void registration_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmdSignUp_Click(object sender, EventArgs e)
+        {
+            //initializing the user details to work with the Interface constructor
+
+            IAuthentication auth = new User
+            {
+                Firstname = TxtFirstname.Text,
+                Lastname = TxtLastname.Text,
+                Username = TxtUsername.Text,
+                Password = TxtPassword.Text,
+                Contact = TxtContactNumber.Text,
+            };
+
+            //validating empty fields before submission
+
+            if (string.IsNullOrEmpty(auth.Firstname))
+            {
+                MessageBox.Show("Please firstname field can't be empty");
+            }
+            else if (string.IsNullOrEmpty(auth.Lastname))
+            {
+                MessageBox.Show("Please lastname field can't be empty");
+            }
+            else if (string.IsNullOrEmpty(auth.Username))
+            {
+                MessageBox.Show("Please username field can't be empty");
+            }
+            else if (string.IsNullOrEmpty(auth.Contact))
+            {
+                MessageBox.Show("Please contact field can't be empty");
+            }
+            else if (string.IsNullOrEmpty(auth.Password))
+            {
+                MessageBox.Show("Please lastname field can't be empty");
+            }
+            else
+            {
+                //validating password case requirements
+                if (auth.PasswordCaseValidator(auth.Password))
+                {
+                    //validating password lenth
+                    if(auth.PasswordLengthValidator(auth.Password))
+                    {
+                        // pairing user form data to a managed dictionary
+                        var userData = new Dictionary<string, object>
+                        {
+                            {"Firstname", auth.Firstname},
+                            {"Lastname", auth.Lastname},
+                            {"Username", auth.Username},
+                            {"Contact", auth.Contact},
+                            {"Password", auth.Password},
+                        };
+
+                        int queryResult = auth.SignUpUser(userData);
+
+                        if (queryResult == 0)
+                        {
+                            MessageBox.Show("Ooops! Failed to create user check details or try again late");
+                        }
+                        else
+                        {
+                            MessageBox.Show("User account created successfull");
+                            login login = new();
+                            login.Show();
+                            Hide();
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("cannot proceed Your password is less than 8 characters");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please use atlease one uppercase and lowercase in your password");
+                }
+            }
+        }
     }
 }

@@ -19,9 +19,11 @@ namespace Appliance_Rental_System
             InitializeComponent();
         }
 
+
+        //User authentication
         private void CmdSignin_Click(object sender, EventArgs e)
         {
-            
+
             IAuthentication authentication = new User
             {
                 Username = TxtUsername.Text,
@@ -32,50 +34,40 @@ namespace Appliance_Rental_System
             {
                 MessageBox.Show("Please username field can't be empty");
             }
-            else if(string.IsNullOrEmpty(authentication.Password))
+            else if (string.IsNullOrEmpty(authentication.Password))
             {
                 MessageBox.Show("Please password field can't be empty");
-            } 
+            }
             else
             {
-                if (authentication.PasswordCaseValidator(authentication.Password))
+
+                var authData = new Dictionary<string, object>
+                   {
+                        {"Username", authentication.Username},
+                        {"Password", authentication.Password},
+                   };
+
+                int NumberOfRows = authentication.SignInUser(authData);
+
+                if (NumberOfRows == 0 && MaxloginAttempts != 0)
                 {
-                    if (authentication.PasswordLengthValidator(authentication.Password))
+                    MessageBox.Show("Username & Password Incorrect");
+                    MaxloginAttempts--;
+
+                    if (MaxloginAttempts == 0)
                     {
-                        var authData = new Dictionary<string, object>
-                        {
-                            {"Username", authentication.Username},
-                            {"Password", authentication.Password},
-                        };
-
-                       int NumberOfRows = authentication.SignInUser(authData);
-
-                        if (NumberOfRows == 0 && MaxloginAttempts != 0)
-                        {
-                            MessageBox.Show("Username & Password Incorrect");
-                            MaxloginAttempts--;
-
-                            if(MaxloginAttempts == 0)
-                            {
-                                MessageBox.Show("Maximum password attempts reached. Try loggin in later");
-                                MaxloginAttempts = 0;   
-                            }
-                        }
-                        else if (NumberOfRows == 1 && MaxloginAttempts != 0)
-                        {
-                            MessageBox.Show("Authentication Successfull!"); 
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("cannot proceed Your password is less than 8 characters");
+                        MessageBox.Show("Maximum password attempts reached. Try loggin in later");
+                        MaxloginAttempts = 0;
                     }
                 }
-                else
+                else if (NumberOfRows == 1 && MaxloginAttempts != 0)
                 {
-                    MessageBox.Show("Please use atlease one uppercase and lowercase in your password");
+                    MessageBox.Show("Authentication Successfull!");
+                    Dashboard dashboard = new();
+                    dashboard.Show();
+                    Hide();
+
                 }
-                
             }
         }
     }

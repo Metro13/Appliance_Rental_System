@@ -8,9 +8,9 @@ namespace Appliance_Rental_System
         }
         private void CmdProceed_Click(object sender, EventArgs e)
         {
-            login login = new login();
-            login.Show();
-            Hide();
+            registration registration = new();
+            registration.Show();
+            Hide(); 
         }
     }
 }
