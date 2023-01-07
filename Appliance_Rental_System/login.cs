@@ -25,7 +25,7 @@ namespace Appliance_Rental_System
         {
             //setting up User class and interface attributes to the actual data input fiedls
 
-            IAuthentication authentication = new User
+            IUser authentication = new User
             {
                 Username = TxtUsername.Text,
                 Password = TxtPassword.Text,

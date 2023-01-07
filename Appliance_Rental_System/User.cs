@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace Appliance_Rental_System
 {
-    public class User : IAuthentication
+    public class User : IUser
     {
         private string firstname;
         private string lastname;
@@ -56,18 +56,22 @@ namespace Appliance_Rental_System
             {
                 command.Parameters.Add(new SQLiteParameter("@username", authdata["Username"]));
                 command.Parameters.Add(new SQLiteParameter("@password", authdata["Password"]));
+                using var reader = command.ExecuteReader();
+                var count = 0;
+                while (reader.Read())
+                {
+                    count++;
+                }
+                return count;
+            }
+            else
+            {
+                return 0;
             }
 
-            using var reader = command.ExecuteReader();
-            var count = 0;
-            while (reader.Read())
-            {
-                count++;
-            }
-            return count;
+            
 
         }
-
         public int SignUpUser(Dictionary<string, object> userdata)
         {
             //setting up database connection

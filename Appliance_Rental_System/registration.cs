@@ -26,7 +26,7 @@ namespace Appliance_Rental_System
         {
             //initializing the user details to work with the Interface constructor
 
-            IAuthentication auth = new User
+            IUser auth = new User
             {
                 Firstname = TxtFirstname.Text,
                 Lastname = TxtLastname.Text,
