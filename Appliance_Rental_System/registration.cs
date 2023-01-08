@@ -101,5 +101,12 @@ namespace Appliance_Rental_System
                 }
             }
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            login login = new();
+            login.Show();
+            Hide();
+        }
     }
 }

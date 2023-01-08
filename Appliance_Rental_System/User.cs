@@ -12,39 +12,39 @@ namespace Appliance_Rental_System
 {
     public class User : IUser
     {
-        private string firstname;
-        private string lastname;
-        private string password;
-        private string username;
-        private string contact;
+        private string? firstname;
+        private string? lastname;
+        private string? password;
+        private string? username;
+        private string? contact;
 
         public string Firstname 
         {
             set{ firstname = value;}
-            get{ return firstname;}
+            get{ return firstname!;}
         }
         public string Lastname 
         { 
             set { lastname = value; }
-            get { return lastname; }
+            get { return lastname!; }
         }
         public string Username
         { set { username = value; } 
-            get{ return username; }
+            get{ return username!; }
         }
         public string Password 
         { 
             set { password = value; }
             get
             {
-                return password;
+                return password!;
             }   
         }
 
         public string Contact
         {
             set { contact = value; }
-            get { return contact; }
+            get { return contact!; }
         }
 
         public int SignInUser(Dictionary<string, object> authdata)
@@ -78,7 +78,7 @@ namespace Appliance_Rental_System
 
             DBConnection connection = new();
 
-            const string query = "INSERT INTO Users(firstname, lastname,  username, contact, password) VALUES (@firstname, @lastname, @contact, @username, @password)";
+            const string query = "INSERT INTO Users(username, firstname,  lastname, contact, password) VALUES (@username, @firstname, @lastname, @contact, @password)";
 
             var args = new Dictionary<string, object>
             {
@@ -112,7 +112,7 @@ namespace Appliance_Rental_System
         //checks the input password and checks if its 8 digits long
         public bool PasswordLengthValidator(string password)
         {
-            if (password.Length < 8)
+            if (password.Length < 8 || password.Length >= 16)
             {
                 return false;
             }

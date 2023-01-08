@@ -47,6 +47,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label5.Location = new System.Drawing.Point(63, 428);
@@ -54,6 +55,7 @@
             this.label5.Size = new System.Drawing.Size(254, 17);
             this.label5.TabIndex = 22;
             this.label5.Text = "Already have an account? Signin here";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // TxtPassword
             // 

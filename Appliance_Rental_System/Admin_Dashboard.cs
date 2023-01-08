@@ -21,5 +21,12 @@ namespace Appliance_Rental_System
         {
 
         }
+
+        private void cmdAddAppliance_Click(object sender, EventArgs e)
+        {
+            Add_Appliances _Appliances = new();
+            _Appliances.Show();
+            Hide();
+        }
     }
 }

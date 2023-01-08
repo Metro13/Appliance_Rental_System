@@ -65,6 +65,7 @@
             this.cmdAddAppliance.TabIndex = 11;
             this.cmdAddAppliance.Text = "Add Appliances";
             this.cmdAddAppliance.UseVisualStyleBackColor = true;
+            this.cmdAddAppliance.Click += new System.EventHandler(this.cmdAddAppliance_Click);
             // 
             // CmdViewRentals
             // 
