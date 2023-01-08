@@ -19,7 +19,7 @@ namespace Appliance_Rental_System
 
         private void cmdAddAppliance_Click(object sender, EventArgs e)
         {
-            Appliance appliance = new Appliance
+            Appliance appliance = new()
             {
                 Brand = TxtBrand.Text,
                 Model = TxtModel.Text,

@@ -12,7 +12,7 @@ namespace Appliance_Rental_System
         {
             DBConnection conn = new();
 
-            string query = "INSERT INTO Appliance(model, brand, type, dimensions, color, energy-consumption, monthly-fee) VALUES (@model, @brand, @type, @dimensions, @color, @energyConsumption, @monthly-fee)";
+            string query = "INSERT INTO Appliance (model, brand, type, dimensions, color, energyConsumption, monthlyFee) VALUES (@model, @brand, @type, @dimensions, @color, @energyConsumption, @monthlyfee)";
 
             var args = new Dictionary<string, object>
             {
@@ -22,7 +22,7 @@ namespace Appliance_Rental_System
                 {"@dimensions",  appliance["Dimensions"]},
                 {"@color",  appliance["Color"]},
                 {"@energyConsumption",  appliance["Consumption"]},
-                {"@monthly-fee",  appliance["Monthly-Fee"]},
+                {"@monthlyfee",  appliance["Monthly-Fee"]},
             };
 
             return conn.QueryExecuter(query, args); 
