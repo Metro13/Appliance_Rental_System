@@ -8,12 +8,12 @@ using System.Data.SQLite;
 
 namespace Appliance_Rental_System
 {
-    internal class DBConnection
+    public class DBConnection
     {
         private int numrows;
 
         //setting up a portable mysqlite connection string
-        public static string ConnectionString(string id = "Default")
+        public string ConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }

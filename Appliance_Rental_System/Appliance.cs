@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,24 @@ namespace Appliance_Rental_System
         private string? color;
         private int energyConsumption;
         private int monthlyFee;
+
+
+        public Appliance(string model, string brand, string applianceType, string dimensions, string color, int energyConsumption, int monthlyFee)
+        {
+            Model = model;
+            Brand = brand;
+            ApplianceType = applianceType;
+            Dimensions = dimensions;
+            Color = color;
+            EnergyConsumption = energyConsumption;
+            MonthlyFee = monthlyFee;
+           
+        }
+
+        public Appliance()
+        {
+
+        }
 
         public string Model
         {
@@ -56,5 +76,36 @@ namespace Appliance_Rental_System
             get { return monthlyFee; }
             set { monthlyFee = value; }
         }
+
+
+       public List<Dictionary<string, dynamic>> GetAppliances()
+       {
+            DBConnection connection = new();
+            string conString = connection.ConnectionString();
+            using var conn = new SQLiteConnection(conString);
+            conn.Open();
+            using var command = new SQLiteCommand("SELECT * FROM Appliance", conn);
+
+            
+            List<Dictionary<string, dynamic>> appliances = new();
+
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+
+                Dictionary<string, dynamic> appliance = new();
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    appliance.Add(reader.GetName(i), reader[i]);
+                }
+
+                appliances.Add(appliance);  
+
+            }
+
+            return appliances;
+        }
     }
+    
 }

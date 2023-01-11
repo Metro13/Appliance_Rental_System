@@ -104,9 +104,18 @@ namespace Appliance_Rental_System
 
         private void label5_Click(object sender, EventArgs e)
         {
-            login login = new();
-            login.Show();
-            Hide();
+            Appliance appliance = new();
+            List<object> myAppliances = appliance.GetAppliances();
+
+            foreach (var appliant in myAppliances)
+            {
+                MessageBox.Show("Appliances: " + appliant);
+            }
+
+
+            //login login = new();
+           // login.Show();
+           // Hide();
         }
     }
 }
