@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Appliance_Rental_System
 {
@@ -85,7 +87,6 @@ namespace Appliance_Rental_System
             using var conn = new SQLiteConnection(conString);
             conn.Open();
             using var command = new SQLiteCommand("SELECT * FROM Appliance", conn);
-
             
             List<Dictionary<string, dynamic>> appliances = new();
 
@@ -106,6 +107,33 @@ namespace Appliance_Rental_System
 
             return appliances;
         }
-    }
+
+        public DataTable ParseDictionaryToDataTable(List<Dictionary<string, object>> myAppliances)
+        {
+            DataTable dataTable = new();
+
+            foreach (Dictionary<string, object> appliancee in myAppliances)
+            {
+                if (dataTable.Columns.Count == 0)
+                {
+                    foreach (var key in appliancee.Keys)
+                    {
+                        dataTable.Columns.Add(key);
+                    }
+                }
+
+                DataRow dataRow = dataTable.NewRow();
+
+                foreach (var key in appliancee.Keys)
+                {
+                    dataRow[key] = appliancee[key];
+                }
+
+                dataTable.Rows.Add(dataRow);
+            }
+
+            return dataTable;   
+        }
     
+    }
 }

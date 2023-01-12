@@ -28,5 +28,12 @@ namespace Appliance_Rental_System
             _Appliances.Show();
             Hide();
         }
+
+        private void CmdManageAppliances_Click(object sender, EventArgs e)
+        {
+            Manage_Appliances manage_ = new();
+            manage_.Show();
+            Hide();
+        }
     }
 }

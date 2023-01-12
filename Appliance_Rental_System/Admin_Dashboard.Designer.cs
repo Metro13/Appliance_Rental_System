@@ -86,6 +86,7 @@
             this.CmdManageAppliances.TabIndex = 14;
             this.CmdManageAppliances.Text = "Manage Appliances";
             this.CmdManageAppliances.UseVisualStyleBackColor = true;
+            this.CmdManageAppliances.Click += new System.EventHandler(this.CmdManageAppliances_Click);
             // 
             // CmdViewCustomers
             // 
