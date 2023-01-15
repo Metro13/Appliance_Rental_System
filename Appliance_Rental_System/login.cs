@@ -67,8 +67,7 @@ namespace Appliance_Rental_System
                 }
                 else if (NumberOfRows == 1 && MaxloginAttempts != 0)
                 {
-                    MessageBox.Show("Authentication Successfull!");
-
+                   
                     if (authentication.Username == "Admin" || authentication.Username == "admin")
                     {
                         Admin_Dashboard admin_ = new();

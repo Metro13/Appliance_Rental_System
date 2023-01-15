@@ -37,7 +37,7 @@ namespace Appliance_Rental_System
             }
             else if (string.IsNullOrEmpty(appliance.Brand))
             {
-                MessageBox.Show("Please model field can't be empty");
+                MessageBox.Show("Please brand field can't be empty");
             }
             else if (string.IsNullOrEmpty(appliance.ApplianceType))
             {

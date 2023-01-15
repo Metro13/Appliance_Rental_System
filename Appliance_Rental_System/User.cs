@@ -94,12 +94,12 @@ namespace Appliance_Rental_System
             return connection.QueryExecuter(query, args);
         }
 
-        //checks the input password and check if it contains uppercase lowercase values
+        //checks the input password and check if it contains atleast number, uppercase and lowercase values
         public bool PasswordCaseValidator(string password)
         {
             //regex expression
 
-            if(Regex.IsMatch(password, "^(?=.*[a-z])(?=.*[A-Z]).+$"))
+            if(Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"))
             {
                 return true;
             }

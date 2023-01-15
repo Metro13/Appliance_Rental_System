@@ -92,12 +92,12 @@ namespace Appliance_Rental_System
                     }
                     else
                     {
-                        MessageBox.Show("cannot proceed Your password is less than 8 characters");
+                        MessageBox.Show("cannot proceed passwords should not be less than 8 and not more that 16 characters");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please use atlease one uppercase and lowercase in your password");
+                    MessageBox.Show("Please include atlease one uppercase, lowercase and number in your password");
                 }
             }
         }
