@@ -94,7 +94,6 @@ namespace Appliance_Rental_System
 
             while (reader.Read())
             {
-
                 Dictionary<string, dynamic> appliance = new();
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
@@ -102,7 +101,6 @@ namespace Appliance_Rental_System
                 }
 
                 appliances.Add(appliance);  
-
             }
 
             return appliances;
@@ -121,8 +119,7 @@ namespace Appliance_Rental_System
                         dataTable.Columns.Add(key);
                     }
                 }
-
-                DataRow dataRow = dataTable.NewRow();
+                var dataRow = dataTable.NewRow();
 
                 foreach (var key in appliancee.Keys)
                 {

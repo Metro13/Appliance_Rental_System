@@ -9,12 +9,76 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="obj\Debug\net6.0-windows\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net6.0-windows\Appliance_Rental_System.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net6.0-windows\Appliance_Rental_System.GlobalUsings.g.cs" />
+    <Compile Include="obj\Release\net6.0-windows\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Release\net6.0-windows\Appliance_Rental_System.AssemblyInfo.cs" />
+    <Compile Include="obj\Release\net6.0-windows\Appliance_Rental_System.GlobalUsings.g.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net6.0-windows\Appliance_Rental_System.deps.json" />
+    <Content Include="bin\Debug\net6.0-windows\Appliance_Rental_System.runtimeconfig.json" />
+    <Content Include="obj\Appliance_Rental_System.csproj.nuget.dgspec.json" />
+    <Content Include="obj\Debug\net6.0-windows\Appliance_Rental_System.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.117" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="bin\Release\net6.0-windows\" />
+    <Folder Include="obj\Release\net6.0-windows\refint\" />
+    <Folder Include="obj\Release\net6.0-windows\ref\" />
     <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net6.0-windows\Appliance Rental.db" />
+    <None Include="bin\Debug\net6.0-windows\Appliance_Rental_System.dll" />
+    <None Include="bin\Debug\net6.0-windows\Appliance_Rental_System.dll.config" />
+    <None Include="bin\Debug\net6.0-windows\Appliance_Rental_System.exe" />
+    <None Include="bin\Debug\net6.0-windows\Appliance_Rental_System.pdb" />
+    <None Include="bin\Debug\net6.0-windows\Newtonsoft.Json.Bson.dll" />
+    <None Include="bin\Debug\net6.0-windows\Newtonsoft.Json.dll" />
+    <None Include="bin\Debug\net6.0-windows\runtimes\linux-x64\native\SQLite.Interop.dll" />
+    <None Include="bin\Debug\net6.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll" />
+    <None Include="bin\Debug\net6.0-windows\runtimes\win-x64\native\SQLite.Interop.dll" />
+    <None Include="bin\Debug\net6.0-windows\runtimes\win-x86\native\SQLite.Interop.dll" />
+    <None Include="bin\Debug\net6.0-windows\System.Data.SQLite.dll" />
+    <None Include="obj\Appliance_Rental_System.csproj.nuget.g.props" />
+    <None Include="obj\Appliance_Rental_System.csproj.nuget.g.targets" />
+    <None Include="obj\Debug\net6.0-windows\apphost.exe" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.Add_Appliances.resources" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.Admin_Dashboard.resources" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.assets.cache" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.csproj.CopyComplete" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.Dashboard.resources" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.dll" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.login.resources" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.Manage_Appliances.resources" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.pdb" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.registration.resources" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.Start.resources" />
+    <None Include="obj\Debug\net6.0-windows\Appliance_Rental_System.View_Rentals.resources" />
+    <None Include="obj\Debug\net6.0-windows\refint\Appliance_Rental_System.dll" />
+    <None Include="obj\Debug\net6.0-windows\ref\Appliance_Rental_System.dll" />
+    <None Include="obj\project.nuget.cache" />
+    <None Include="obj\Release\net6.0-windows\Appliance_Rental_System.AssemblyInfoInputs.cache" />
+    <None Include="obj\Release\net6.0-windows\Appliance_Rental_System.assets.cache" />
+    <None Include="obj\Release\net6.0-windows\Appliance_Rental_System.csproj.AssemblyReference.cache" />
+    <None Include="obj\Release\net6.0-windows\Appliance_Rental_System.GeneratedMSBuildEditorConfig.editorconfig" />
   </ItemGroup>
 
 </Project>

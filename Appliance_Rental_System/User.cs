@@ -68,9 +68,6 @@ namespace Appliance_Rental_System
             {
                 return 0;
             }
-
-            
-
         }
         public int SignUpUser(Dictionary<string, object> userdata)
         {
